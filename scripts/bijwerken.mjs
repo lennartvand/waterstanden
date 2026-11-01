@@ -226,7 +226,7 @@ for (const p of PEILSCHALEN) {
 // ---------- Teletekst 720: minst gepeilde dieptes, Westsluis Weurt, verwachtingen ----------
 // Dagelijkse momentopname (de pagina toont alleen actuele waarden; RWS werkt
 // de dieptes dagelijks rond 09:30 bij). Opslag: docs/data/dieptes/<jaar>.json
-//   { "JJJJ-MM-DD": { tijd, vakken: { naam: cm }, westsluis, verwachtingen: { peilschaal: { "DD-MM": cm } } } }
+//   { "JJJJ-MM-DD": { tijd, vakken: { rivier: { vak: cm } }, westsluis, verwachtingen: { peilschaal: { "DD-MM": cm } } } }
 const tekstVan = (html) => String(html || '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&#x[0-9a-f]+;/gi, ' ');
 async function teletekst720() {
   const paginas = [];
@@ -239,6 +239,12 @@ async function teletekst720() {
   }
   return paginas;
 }
+function rivierVanVak(naam) {
+  if (/spijk|maas-waalkanaal|woudrichem|waal/i.test(naam)) return 'Waal';
+  if (/pannerdens|driel|heteren|hagestein|nederrijn|\blek\b/i.test(naam)) return 'Nederrijn-Lek';
+  if (/twenthekanaal|zwolle|ketelmeer|deventer|ijssel/i.test(naam)) return 'IJssel';
+  return 'Overig';
+}
 function leesDieptes(paginas) {
   const uit = { vakken: {}, westsluis: null, verwachtingen: {}, tijd: null };
   for (const p of paginas) {
@@ -246,11 +252,16 @@ function leesDieptes(paginas) {
     if (/Minst gepeilde diepten/i.test(p)) {
       const t = p.match(/\b(\d{1,2}:\d{2})\b/);
       if (t) uit.tijd = t[1];
+      // De pagina heeft geen kopjes per rivier: indelen op de namen van de vakken.
+      let begonnen = false;
       for (const r of regels) {
+        if (/Minst gepeilde diepten/i.test(r)) { begonnen = true; continue; }
+        if (!begonnen) continue;
         const m = r.match(/^\s*(.+?)\.+\s*(-?\d+)\s*$/);
         if (!m) continue;
         const naam = m[1].trim(), cm = +m[2];
-        if (/westsluis/i.test(naam)) uit.westsluis = cm; else uit.vakken[naam] = cm;
+        if (/westsluis/i.test(naam)) uit.westsluis = cm;
+        else { const rv = rivierVanVak(naam); (uit.vakken[rv] = uit.vakken[rv] || {})[naam] = cm; }
       }
     }
     if (/verwachte waterhoogten/i.test(p)) {
