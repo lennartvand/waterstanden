@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-01T13:59:50.046Z",
+  "bijgewerkt": "2026-11-01T14:12:28.449Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -12,7 +12,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-01T13"
+      "laatste": "2026-11-01T14"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -31,40 +31,50 @@
       "naam": "Maxau",
       "bron": "pegelonline",
       "nul": "PNP",
-      "jaren": [],
-      "laatste": null
+      "jaren": [
+        2026
+      ],
+      "laatste": "2026-11-01T14"
     },
     "KAUB": {
       "sleutel": "kaub",
       "naam": "Kaub",
       "bron": "pegelonline",
       "nul": "PNP",
-      "jaren": [],
-      "laatste": null
+      "jaren": [
+        2026
+      ],
+      "laatste": "2026-11-01T14"
     },
     "KÖLN": {
       "sleutel": "koeln",
       "naam": "Köln",
       "bron": "pegelonline",
       "nul": "PNP",
-      "jaren": [],
-      "laatste": null
+      "jaren": [
+        2026
+      ],
+      "laatste": "2026-11-01T14"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
       "naam": "Duisburg-Ruhrort",
       "bron": "pegelonline",
       "nul": "PNP",
-      "jaren": [],
-      "laatste": null
+      "jaren": [
+        2026
+      ],
+      "laatste": "2026-11-01T14"
     },
     "WESEL": {
       "sleutel": "wesel",
       "naam": "Wesel",
       "bron": "pegelonline",
       "nul": "PNP",
-      "jaren": [],
-      "laatste": null
+      "jaren": [
+        2026
+      ],
+      "laatste": "2026-11-01T14"
     }
   }
 }
