@@ -257,7 +257,7 @@ function leesDieptes(paginas) {
       for (const r of regels) {
         if (/Minst gepeilde diepten/i.test(r)) { begonnen = true; continue; }
         if (!begonnen) continue;
-        const m = r.match(/^\s*(.+?)\.+\s*(-?\d+)\s*$/);
+        const m = r.match(/^\s*(.*?[A-Za-z])\.*\s+(-?\d+)\s*$/) || r.match(/^\s*(.+?)\.+\s*(-?\d+)\s*$/);
         if (!m) continue;
         const naam = m[1].trim(), cm = +m[2];
         if (/westsluis/i.test(naam)) uit.westsluis = cm;
@@ -265,9 +265,10 @@ function leesDieptes(paginas) {
       }
     }
     if (/verwachte waterhoogten/i.test(p)) {
-      const kop = regels.find(r => /\d{2}-\d{2}\s+\d{2}-\d{2}/.test(r));
+      const na = regels.slice(regels.findIndex(r => /verwachte waterhoogten/i.test(r)));
+      const kop = na.find(r => /\d{2}-\d{2}\s+\d{2}-\d{2}/.test(r));
       const data = kop ? kop.trim().split(/\s+/) : [];
-      for (const r of regels) {
+      for (const r of na) {
         const m = r.match(/^\s*([A-Za-zÀ-ÿ' ]+?)\.{2,}\s+((?:-?\d+\s*)+)$/);
         if (!m || !data.length) continue;
         const w = m[2].trim().split(/\s+/).map(Number);
