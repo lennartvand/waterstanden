@@ -5,6 +5,7 @@ name: Waterstanden bijwerken
 on:
   schedule:
     - cron: '23 3 * * *'      # elke dag 03:23 UTC
+    - cron: '43 8 * * *'      # na 09:30 (NL): minst gepeilde dieptes en Westsluis van Teletekst
   workflow_dispatch:
 
 permissions:

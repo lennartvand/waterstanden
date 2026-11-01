@@ -26,7 +26,8 @@ const DAG = 86400000;
 
 // code = zoals in de app (PEILSCHALEN in vaarwegen.js); sleutel = mapnaam
 const PEILSCHALEN = [
-  { code: 'LITH', sleutel: 'lith', naam: 'Lith beneden sluis', bron: 'rws', rws: 'lith.sluis', nul: 'NAP' },
+  // lith.beneden ("Lith dorp") en lith.sluis geven dezelfde metingen; lith.beneden heeft ook de historie van vóór okt. 2025
+  { code: 'LITH', sleutel: 'lith', naam: 'Lith beneden sluis', bron: 'rws', rws: 'lith.beneden', nul: 'NAP' },
   { code: 'NIJMEGEN', sleutel: 'nijmegen', naam: 'Nijmegen Waal', bron: 'rws', rws: 'nijmegen.waal', nul: 'NAP' },
   { code: 'MAXAU', sleutel: 'maxau', naam: 'Maxau', bron: 'pegelonline', uuid: 'b6c6d5c8-e2d5-4469-8dd8-fa972ef7eaea', nul: 'PNP' },
   { code: 'KAUB', sleutel: 'kaub', naam: 'Kaub', bron: 'pegelonline', uuid: '1d26e504-7f9e-480a-b52c-5932be6549ab', nul: 'PNP' },
@@ -187,11 +188,20 @@ for (const p of PEILSCHALEN) {
   if (p.bron === 'pegelonline') start = Math.max(start, nu - 30 * DAG);
   log(`\n${p.naam}: vanaf ${new Date(start).toISOString().slice(0, 10)}`);
   let nieuw = 0, foutenHier = 0;
-  while (start < nu) {
+  // Ontbreekt het begin van de reeks (bijv. na een wissel van meetpunt)? Dan eerst dat stuk ophalen.
+  const eersteJaar = (await jarenVan(p))[0];
+  const eerste = eersteJaar ? Date.parse(Object.keys(await leesJaar(p, eersteJaar)).sort()[0] + ':00:00Z') : null;
+  const vakken = [];
+  if (p.bron === 'rws' && eerste && eerste - Date.parse(VANAF) > 2 * DAG) vakken.push([Date.parse(VANAF), eerste]);
+  vakken.push([start, nu]);
+  for (const [van, tot] of vakken) {
+  start = van;
+  if (van !== vakken.at(-1)[0]) log(`  begin aanvullen: ${new Date(van).toISOString().slice(0, 10)} t/m ${new Date(tot).toISOString().slice(0, 10)}`);
+  while (start < tot) {
     // Rijkswaterstaat: per 30 dagen. Pegelonline: REST voor de laatste 30 dagen, anders historie per 90 dagen.
     const recent = p.bron === 'pegelonline';
     const stap = p.bron === 'rws' ? 30 * DAG : (recent ? 30 * DAG : 90 * DAG);
-    const eind = Math.min(start + stap, nu);
+    const eind = Math.min(start + stap, tot);
     try {
       const m = await metHerkansing(() =>
         p.bron === 'rws' ? rwsPeriode(p, start, eind) : (recent ? poRecent(p, start, eind) : poHistorie(p, start, eind)));
@@ -204,6 +214,7 @@ for (const p of PEILSCHALEN) {
     }
     start = eind;
   }
+  }
   fouten += foutenHier;
   if (nieuw || !foutenHier) gelukt++;
   const jaren = await jarenVan(p);
@@ -211,6 +222,109 @@ for (const p of PEILSCHALEN) {
   index.peilschalen[p.code] = { sleutel: p.sleutel, naam: p.naam, bron: p.bron, nul: p.nul, jaren, laatste: laatsteNu ? uurSleutel(laatsteNu) : null };
   log(`  ${p.naam}: ${nieuw} nieuwe uren, laatste ${index.peilschalen[p.code].laatste}`);
 }
+
+// ---------- Teletekst 720: minst gepeilde dieptes, Westsluis Weurt, verwachtingen ----------
+// Dagelijkse momentopname (de pagina toont alleen actuele waarden; RWS werkt
+// de dieptes dagelijks rond 09:30 bij). Opslag: docs/data/dieptes/<jaar>.json
+//   { "JJJJ-MM-DD": { tijd, vakken: { naam: cm }, westsluis, verwachtingen: { peilschaal: { "DD-MM": cm } } } }
+const tekstVan = (html) => String(html || '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&#x[0-9a-f]+;/gi, ' ');
+async function teletekst720() {
+  const paginas = [];
+  for (let i = 1; i <= 12; i++) {
+    const r = await fetch(`https://teletekst-data.nos.nl/json/${i === 1 ? '720' : '720-' + i}`);
+    if (!r.ok) break;
+    const j = await r.json();
+    paginas.push(tekstVan(j.content));
+    if (!j.nextSubPage) break;
+  }
+  return paginas;
+}
+function leesDieptes(paginas) {
+  const uit = { vakken: {}, westsluis: null, verwachtingen: {}, tijd: null };
+  for (const p of paginas) {
+    const regels = p.split('\n');
+    if (/Minst gepeilde diepten/i.test(p)) {
+      const t = p.match(/\b(\d{1,2}:\d{2})\b/);
+      if (t) uit.tijd = t[1];
+      for (const r of regels) {
+        const m = r.match(/^\s*(.+?)\.+\s*(-?\d+)\s*$/);
+        if (!m) continue;
+        const naam = m[1].trim(), cm = +m[2];
+        if (/westsluis/i.test(naam)) uit.westsluis = cm; else uit.vakken[naam] = cm;
+      }
+    }
+    if (/verwachte waterhoogten/i.test(p)) {
+      const kop = regels.find(r => /\d{2}-\d{2}\s+\d{2}-\d{2}/.test(r));
+      const data = kop ? kop.trim().split(/\s+/) : [];
+      for (const r of regels) {
+        const m = r.match(/^\s*([A-Za-zÀ-ÿ' ]+?)\.{2,}\s+((?:-?\d+\s*)+)$/);
+        if (!m || !data.length) continue;
+        const w = m[2].trim().split(/\s+/).map(Number);
+        uit.verwachtingen[m[1].trim()] = Object.fromEntries(data.map((d, i) => [d, w[i]]).filter(([, v]) => isFinite(v)));
+      }
+    }
+  }
+  return uit;
+}
+try {
+  const d = leesDieptes(await teletekst720());
+  if (Object.keys(d.vakken).length || d.westsluis !== null) {
+    const nuLokaal = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Amsterdam' }));
+    const dag = `${nuLokaal.getFullYear()}-${String(nuLokaal.getMonth() + 1).padStart(2, '0')}-${String(nuLokaal.getDate()).padStart(2, '0')}`;
+    const bestand = join(DATA, 'dieptes', `${dag.slice(0, 4)}.json`);
+    let jaar = {};
+    try { jaar = JSON.parse(await readFile(bestand, 'utf8')); } catch {}
+    jaar[dag] = d;
+    await mkdir(join(DATA, 'dieptes'), { recursive: true });
+    await writeFile(bestand, JSON.stringify(jaar));
+    log(`\nTeletekst 720 (${dag} ${d.tijd || ''}): Westsluis ${d.westsluis} cm\n  vakken ${JSON.stringify(d.vakken)}\n  verwachtingen ${JSON.stringify(d.verwachtingen)}`);
+  } else log('\nTeletekst 720: geen dieptes gevonden');
+} catch (e) { log('\nTeletekst 720: FOUT ' + e.message); }
+
+// Overzicht dieptes in de index
+const dieptesJaren = (await readdir(join(DATA, 'dieptes')).catch(() => [])).map(f => +f.slice(0, 4)).filter(Boolean).sort();
+let laatsteDieptes = null;
+if (dieptesJaren.length) {
+  const jaar = JSON.parse(await readFile(join(DATA, 'dieptes', `${dieptesJaren.at(-1)}.json`), 'utf8'));
+  const dag = Object.keys(jaar).sort().at(-1);
+  laatsteDieptes = { dag, ...jaar[dag] };
+}
+index.dieptes = { jaren: dieptesJaren, laatste: laatsteDieptes };
+
+// ---------- Westsluis Weurt: uitvaartdiepte afgeleid uit Nijmegen Waal ----------
+// diepte = stand Nijmegen − vast verschil. Het verschil volgt uit de dagen
+// waarop Teletekst de diepte gaf (stand Nijmegen op dat moment − diepte); mediaan.
+try {
+  const nijm = PEILSCHALEN.find(p => p.code === 'NIJMEGEN');
+  const verschillen = [];
+  for (const j of dieptesJaren) {
+    const jaar = JSON.parse(await readFile(join(DATA, 'dieptes', `${j}.json`), 'utf8'));
+    for (const [dag, d] of Object.entries(jaar)) {
+      if (d.westsluis === null || d.westsluis === undefined) continue;
+      const [hh, mm] = String(d.tijd || '09:30').split(':').map(Number);
+      // lokale tijd (Amsterdam) → UTC-uur
+      const lokaal = Date.UTC(+dag.slice(0, 4), +dag.slice(5, 7) - 1, +dag.slice(8, 10), hh, mm);
+      const ofs = berlijnOffset(+dag.slice(0, 4), +dag.slice(5, 7), +dag.slice(8, 10), hh) * 60000;
+      const uur = uurSleutel(lokaal - ofs);
+      const stand = (await leesJaar(nijm, uur.slice(0, 4)))[uur];
+      if (stand !== undefined) verschillen.push(stand - d.westsluis);
+    }
+  }
+  if (verschillen.length) {
+    const s = [...verschillen].sort((a, b) => a - b);
+    const verschil = s[Math.floor(s.length / 2)];
+    const ws = { code: 'WESTSLUIS', sleutel: 'westsluis', naam: 'Westsluis Weurt (uitvaartdiepte)', bron: 'afgeleid', nul: 'diepte' };
+    for (const j of await jarenVan(nijm)) {
+      const uren = await leesJaar(nijm, j);
+      const afgeleid = Object.fromEntries(Object.entries(uren).map(([k, v]) => [k, v - verschil]));
+      await mkdir(join(DATA, ws.sleutel), { recursive: true });
+      await writeFile(join(DATA, ws.sleutel, `${j}.json`), JSON.stringify(afgeleid));
+    }
+    index.peilschalen.WESTSLUIS = { sleutel: ws.sleutel, naam: ws.naam, bron: 'afgeleid uit Nijmegen Waal', nul: 'diepte (cm)',
+      verschil, kalibratiedagen: verschillen.length, spreiding: s.at(-1) - s[0], jaren: await jarenVan(ws), laatste: index.peilschalen.NIJMEGEN.laatste };
+    log(`Westsluis Weurt: afgeleid uit Nijmegen − ${verschil} cm (${verschillen.length} kalibratiedag(en), spreiding ${s.at(-1) - s[0]} cm)`);
+  }
+} catch (e) { log('Westsluis: FOUT ' + e.message); }
 
 await mkdir(DATA, { recursive: true });
 await writeFile(join(DATA, 'index.json'), JSON.stringify(index, null, 2));
