@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-01T14:12:28.449Z",
+  "bijgewerkt": "2026-11-01T14:17:37.048Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -9,6 +9,7 @@
       "bron": "rws",
       "nul": "NAP",
       "jaren": [
+        2024,
         2025,
         2026
       ],
@@ -24,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-01T13"
+      "laatste": "2026-11-01T14"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -75,6 +76,93 @@
         2026
       ],
       "laatste": "2026-11-01T14"
+    },
+    "WESTSLUIS": {
+      "sleutel": "westsluis",
+      "naam": "Westsluis Weurt (uitvaartdiepte)",
+      "bron": "afgeleid uit Nijmegen Waal",
+      "nul": "diepte (cm)",
+      "verschil": 239,
+      "kalibratiedagen": 1,
+      "spreiding": 0,
+      "jaren": [
+        2024,
+        2025,
+        2026
+      ],
+      "laatste": "2026-11-01T14"
+    }
+  },
+  "dieptes": {
+    "jaren": [
+      2026
+    ],
+    "laatste": {
+      "dag": "2026-11-01",
+      "vakken": {
+        "Spijk - Maas-Waalkanaal": 210,
+        "Maas-Waalkanaal - A'dam-Rijnkanaal": 230,
+        "A'dam-Rijnkanaal - Woudrichem": 260,
+        "Pannerdensche Kop - IJsselkop": 230,
+        "IJsselkop - Driel": 200,
+        "Driel - Heteren": 275,
+        "Heteren - A'dam-Rijnkanaal": 240,
+        "A'dam-Rijnkanaal - Hagestein": 245,
+        "IJsselkop - Twenthekanaal": 170,
+        "Zwolle-IJsselkanaal - Ketelmeer": 275
+      },
+      "westsluis": 230,
+      "verwachtingen": {
+        "Oestrich": {
+          "02-11": 46,
+          "03-11": 49,
+          "04-11": 48,
+          "05-11": 46
+        },
+        "Kaub": {
+          "02-11": 23,
+          "03-11": 26,
+          "04-11": 26,
+          "05-11": 23
+        },
+        "Koblenz": {
+          "02-11": 26,
+          "03-11": 28,
+          "04-11": 30,
+          "05-11": 27
+        },
+        "Keulen": {
+          "02-11": 79,
+          "03-11": 77,
+          "04-11": 79,
+          "05-11": 78
+        },
+        "Dusseldorf": {
+          "02-11": 34,
+          "03-11": 29,
+          "04-11": 29,
+          "05-11": 30
+        },
+        "Ruhrort": {
+          "02-11": 170,
+          "03-11": 161,
+          "04-11": 158,
+          "05-11": 159
+        },
+        "Emmerich": {
+          "02-11": 27,
+          "03-11": 15,
+          "04-11": 8,
+          "05-11": 6
+        },
+        "Lobith": {
+          "02-11": 680,
+          "03-11": 670,
+          "04-11": 655,
+          "05-11": 650
+        }
+      },
+      "tijd": "09:30"
     }
   }
 }
