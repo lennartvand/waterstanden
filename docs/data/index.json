@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-01T14:17:37.048Z",
+  "bijgewerkt": "2026-11-01T14:20:10.223Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -100,16 +100,22 @@
     "laatste": {
       "dag": "2026-11-01",
       "vakken": {
-        "Spijk - Maas-Waalkanaal": 210,
-        "Maas-Waalkanaal - A'dam-Rijnkanaal": 230,
-        "A'dam-Rijnkanaal - Woudrichem": 260,
-        "Pannerdensche Kop - IJsselkop": 230,
-        "IJsselkop - Driel": 200,
-        "Driel - Heteren": 275,
-        "Heteren - A'dam-Rijnkanaal": 240,
-        "A'dam-Rijnkanaal - Hagestein": 245,
-        "IJsselkop - Twenthekanaal": 170,
-        "Zwolle-IJsselkanaal - Ketelmeer": 275
+        "Waal": {
+          "Spijk - Maas-Waalkanaal": 210,
+          "Maas-Waalkanaal - A'dam-Rijnkanaal": 230,
+          "A'dam-Rijnkanaal - Woudrichem": 260
+        },
+        "Nederrijn-Lek": {
+          "Pannerdensche Kop - IJsselkop": 230,
+          "IJsselkop - Driel": 200,
+          "Driel - Heteren": 275,
+          "Heteren - A'dam-Rijnkanaal": 240,
+          "A'dam-Rijnkanaal - Hagestein": 245
+        },
+        "IJssel": {
+          "IJsselkop - Twenthekanaal": 170,
+          "Zwolle-IJsselkanaal - Ketelmeer": 275
+        }
       },
       "westsluis": 230,
       "verwachtingen": {
