@@ -1,0 +1,19 @@
+# Eenmalige verkenning van vaarweginformatie.nl en Teletekst 720 (alleen handmatig te starten).
+name: Bronnen verkennen
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verkennen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/verkennen.mjs
