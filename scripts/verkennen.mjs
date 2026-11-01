@@ -1,68 +1,55 @@
-// Eenmalige verkenning (handmatig te starten): hoe bieden vaarweginformatie.nl
-// (minst gepeilde dieptes, Westsluis Weurt) en NOS Teletekst 720 hun gegevens aan?
-// Schrijft per bron de status, het type en een stuk van de inhoud naar het logboek,
-// en zoekt in HTML en JavaScript naar adressen van achterliggende API's.
+// Verkenning (handmatig te starten): Teletekst 720 volledig, vaarweginformatie.nl
+// (achterliggende API in de scripts), en de Lith-meetpunten van Rijkswaterstaat.
 
-const BRONNEN = [
-  'https://www.vaarweginformatie.nl/frp/hydro/mgd',
-  'https://www.vaarweginformatie.nl/frp/main/',
-  'https://teletekst-data.nos.nl/json/720',
-  'https://teletekst-data.nos.nl/json/720-2',
-  'https://pegelonline.wsv.de/gast/historische-zeitreihen',
-  'https://www.pegelonline.wsv.de/gast/historische-zeitreihen'
-];
+const UA = { 'User-Agent': 'Mozilla/5.0 (waterstanden-verkenning)' };
+const tekstVan = (html) => html.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#39;/g, "'");
 
-const gezien = new Set();
-async function toon(url, diepte = 0) {
-  if (gezien.has(url) || gezien.size > 25) return;
-  gezien.add(url);
+// ---- Teletekst 720: alle subpagina's als platte tekst ----
+for (let i = 1; i <= 12; i++) {
+  const pagina = i === 1 ? '720' : `720-${i}`;
   try {
-    const r = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (waterstanden-verkenning)' }, redirect: 'follow' });
-    const type = r.headers.get('content-type') || '';
-    const tekst = await r.text();
-    console.log(`\n===== ${url}\nHTTP ${r.status} · ${type} · ${tekst.length} tekens · eindadres ${r.url}`);
-    console.log(tekst.slice(0, diepte ? 1500 : 4000));
-    // Mogelijke API-adressen en scripts
+    const r = await fetch(`https://teletekst-data.nos.nl/json/${pagina}`, { headers: UA });
+    if (!r.ok) { console.log(`TT ${pagina}: HTTP ${r.status}`); break; }
+    const j = await r.json();
+    console.log(`\n===== TT ${pagina}\n` + tekstVan(j.content || ''));
+    if (!j.nextSubPage) break;
+  } catch (e) { console.log(`TT ${pagina}: FOUT ${e.message}`); break; }
+}
+
+// ---- vaarweginformatie.nl: scripts t.o.v. <base href="/frp/"> ----
+try {
+  const r = await fetch('https://www.vaarweginformatie.nl/frp/hydro/mgd', { headers: UA });
+  const html = await r.text();
+  const scripts = [...html.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)].map(m => new URL(m[1], 'https://www.vaarweginformatie.nl/frp/').href);
+  console.log('\n===== FRP scripts: ' + scripts.join(' '));
+  for (const s of scripts) {
+    const t = await (await fetch(s, { headers: UA })).text();
     const adressen = new Set();
-    for (const m of tekst.matchAll(/["'`](\/?[a-z0-9_\-./]*(?:api|rest|service|hydro|mgd|diepte|json)[a-z0-9_\-./?=&]*)["'`]/gi)) adressen.add(m[1]);
-    for (const m of tekst.matchAll(/https?:\/\/[^"'`\s<>]+/g)) if (/api|rest|json|hydro|mgd/i.test(m[0])) adressen.add(m[0]);
-    if (adressen.size) console.log('--- mogelijke API-adressen:\n' + [...adressen].slice(0, 60).join('\n'));
-    if (diepte < 1 && /html/i.test(type)) {
-      const basis = new URL(r.url);
-      for (const m of tekst.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)) await toon(new URL(m[1], basis).href, diepte + 1);
-    }
-  } catch (e) {
-    console.log(`\n===== ${url}\nFOUT: ${e.message}`);
+    for (const m of t.matchAll(/["'`]((?:https?:\/\/[^"'`\s]+)|(?:\/?(?:api|frp|wfs|ows|hydro|rest|services?)[^"'`\s]{0,120}))["'`]/gi)) adressen.add(m[1]);
+    console.log(`--- ${s} (${t.length} tekens)\n` + [...adressen].filter(a => /api|hydro|mgd|diepte|depth|wfs|ows|rest|service/i.test(a)).slice(0, 120).join('\n'));
+    // stukjes rond "mgd"
+    let n = 0;
+    for (const m of t.matchAll(/mgd|minstGepeild|leastSounded|soundedDepth/gi)) { if (n++ > 8) break; console.log('  …' + t.slice(Math.max(0, m.index - 150), m.index + 150).replace(/\s+/g, ' ') + '…'); }
   }
-}
+} catch (e) { console.log('FRP: FOUT ' + e.message); }
 
-for (const b of BRONNEN) await toon(b);
-
-// ---- Rijkswaterstaat: welke Lith-code heeft gegevens vóór oktober 2025? ----
+// ---- Rijkswaterstaat: Lith-codes vergelijken in een periode waarin beide bestaan ----
 const RWS = 'https://ddapi20-waterwebservices.rijkswaterstaat.nl/ONLINEWAARNEMINGENSERVICES/OphalenWaarnemingen';
-for (const code of ['lith', 'lith.beneden', 'lith.boven', 'lith.sluis', 'nijmegen.waal']) {
-  for (const [van, tot] of [['2024-06-01T00:00:00.000+00:00', '2024-06-02T00:00:00.000+00:00'], ['2025-06-01T00:00:00.000+00:00', '2025-06-02T00:00:00.000+00:00']]) {
-    try {
-      const r = await fetch(RWS, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
-        Locatie: { Code: code }, AquoPlusWaarnemingMetadata: { AquoMetadata: { Compartiment: { Code: 'OW' }, Grootheid: { Code: 'WATHTE' } } },
-        Periode: { Begindatumtijd: van, Einddatumtijd: tot } }) });
-      const t = await r.text();
-      let info = t.slice(0, 200);
-      try {
-        const j = JSON.parse(t);
-        info = (j.WaarnemingenLijst || []).map(w => `${(w.MetingenLijst || []).length} metingen, eerste ${JSON.stringify((w.MetingenLijst || [])[0] && w.MetingenLijst[0].Meetwaarde)}, meta ${JSON.stringify(w.AquoMetadata).slice(0, 160)}`).join(' | ') || ('geen reeksen: ' + t.slice(0, 160));
-      } catch {}
-      console.log(`RWS ${code} ${van.slice(0, 10)}: HTTP ${r.status} · ${info}`);
-    } catch (e) { console.log(`RWS ${code} ${van.slice(0, 10)}: FOUT ${e.message}`); }
-  }
+async function rws(code, van, tot) {
+  const r = await fetch(RWS, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+    Locatie: { Code: code }, AquoPlusWaarnemingMetadata: { AquoMetadata: { Compartiment: { Code: 'OW' }, Grootheid: { Code: 'WATHTE' } } },
+    Periode: { Begindatumtijd: van, Einddatumtijd: tot } }) });
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const j = await r.json();
+  return (j.WaarnemingenLijst || []).map(w => {
+    const a = w.AquoMetadata || {};
+    const m = w.MetingenLijst || [];
+    const k = (x) => x && (x.Code || x) ;
+    return `[hoedanigheid ${k(a.Hoedanigheid)} · procestype ${a.ProcesType} · groepering ${k(a.Groepering)} · eenheid ${k(a.Eenheid)} · ${m.length} metingen, ${m.slice(0, 3).map(x => x.Tijdstip.slice(11, 16) + '=' + x.Meetwaarde.Waarde_Numeriek).join(' ')}]`;
+  }).join(' ');
 }
-
-// ---- Pegelonline-historie: wat zegt het formulier-adres op een POST? ----
-for (const url of ['https://pegelonline.wsv.de/gast/historische-zeitreihen/prepare-download', 'https://www.pegelonline.wsv.de/gast/historische-zeitreihen/prepare-download']) {
-  try {
-    const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ uuid: '1d26e504-7f9e-480a-b52c-5932be6549ab', parameter: 'WASSERSTAND ROHDATEN', start: '2025-06-01T00:00:00.000Z', end: '2025-06-03T00:00:00.000Z', format: 'csv' }) });
-    const buf = Buffer.from(await r.arrayBuffer());
-    console.log(`\nPO POST ${url}: HTTP ${r.status} · ${r.headers.get('content-type')} · ${buf.length} bytes · ${buf.slice(0, 300).toString('latin1').replace(/\s+/g, ' ')}`);
-  } catch (e) { console.log(`PO POST ${url}: FOUT ${e.message}`); }
+for (const [van, tot] of [['2025-06-01T10:00:00.000+00:00', '2025-06-01T10:30:00.000+00:00'], ['2025-11-15T10:00:00.000+00:00', '2025-11-15T10:30:00.000+00:00'], ['2026-11-01T10:00:00.000+00:00', '2026-11-01T10:30:00.000+00:00']]) {
+  for (const code of ['lith.beneden', 'lith.sluis', 'lith.boven']) {
+    try { console.log(`RWS ${code} ${van.slice(0, 16)}: ${await rws(code, van, tot)}`); } catch (e) { console.log(`RWS ${code}: FOUT ${e.message}`); }
+  }
 }

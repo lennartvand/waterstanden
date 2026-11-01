@@ -182,11 +182,14 @@ const index = { bijgewerkt: new Date().toISOString(), eenheid: 'cm', uur: 'UTC',
 for (const p of PEILSCHALEN) {
   const laatste = await laatsteUur(p);
   let start = laatste ? laatste - DAG : Date.parse(VANAF);
+  // Pegelonline bewaart via de webservice maar ~30 dagen (de historie-download
+  // op de site bestaat niet meer): verder terug heeft geen zin.
+  if (p.bron === 'pegelonline') start = Math.max(start, nu - 30 * DAG);
   log(`\n${p.naam}: vanaf ${new Date(start).toISOString().slice(0, 10)}`);
   let nieuw = 0, foutenHier = 0;
   while (start < nu) {
     // Rijkswaterstaat: per 30 dagen. Pegelonline: REST voor de laatste 30 dagen, anders historie per 90 dagen.
-    const recent = p.bron === 'pegelonline' && nu - start < 29 * DAG;
+    const recent = p.bron === 'pegelonline';
     const stap = p.bron === 'rws' ? 30 * DAG : (recent ? 30 * DAG : 90 * DAG);
     const eind = Math.min(start + stap, nu);
     try {
