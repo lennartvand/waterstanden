@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-02T11:23:44.799Z",
+  "bijgewerkt": "2026-11-02T18:49:27.142Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-01T14"
+      "laatste": "2026-11-02T18"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-01T14"
+      "laatste": "2026-11-02T18"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-02T11"
+      "laatste": "2026-11-02T18"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-02T11"
+      "laatste": "2026-11-02T18"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-02T11"
+      "laatste": "2026-11-02T18"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-02T11"
+      "laatste": "2026-11-02T18"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,22 +75,22 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-02T11"
+      "laatste": "2026-11-02T18"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
       "naam": "Westsluis Weurt (uitvaartdiepte)",
       "bron": "afgeleid uit Nijmegen Waal",
       "nul": "diepte (cm)",
-      "verschil": 239,
-      "kalibratiedagen": 1,
-      "spreiding": 0,
+      "verschil": 254,
+      "kalibratiedagen": 2,
+      "spreiding": 15,
       "jaren": [
         2024,
         2025,
         2026
       ],
-      "laatste": "2026-11-01T14"
+      "laatste": "2026-11-02T18"
     }
   },
   "dieptes": {
@@ -113,6 +113,7 @@
           "A'dam-Rijnkanaal - Hagestein": 235
         },
         "IJssel": {
+          "IJsselkop - Twenthekanaal": 170,
           "Twenthekanaal - Zwolle-IJsselkanaal": 165,
           "Zwolle-IJsselkanaal - Ketelmeer": 275
         }
@@ -168,7 +169,7 @@
           "06-11": 640
         }
       },
-      "tijd": "09:09"
+      "tijd": "14:52"
     }
   }
 }
