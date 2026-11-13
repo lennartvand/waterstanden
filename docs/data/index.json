@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-12T17:03:52.655Z",
+  "bijgewerkt": "2026-11-13T11:12:29.364Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-12T16"
+      "laatste": "2026-11-13T11"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-12T16"
+      "laatste": "2026-11-13T11"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-12T17"
+      "laatste": "2026-11-13T11"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-12T17"
+      "laatste": "2026-11-13T11"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-12T17"
+      "laatste": "2026-11-13T11"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-12T17"
+      "laatste": "2026-11-13T11"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,22 +75,22 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-12T17"
+      "laatste": "2026-11-13T11"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
       "naam": "Westsluis Weurt (uitvaartdiepte)",
       "bron": "afgeleid uit Nijmegen Waal",
       "nul": "diepte (cm)",
-      "verschil": 246,
-      "kalibratiedagen": 12,
+      "verschil": 245,
+      "kalibratiedagen": 13,
       "spreiding": 15,
       "jaren": [
         2024,
         2025,
         2026
       ],
-      "laatste": "2026-11-12T16"
+      "laatste": "2026-11-13T11"
     }
   },
   "dieptes": {
@@ -98,77 +98,78 @@
       2026
     ],
     "laatste": {
-      "dag": "2026-11-12",
+      "dag": "2026-11-13",
       "vakken": {
         "Waal": {
-          "Spijk - Maas-Waalkanaal": 145,
-          "Maas-Waalkanaal - A'dam-Rijnkanaal": 180,
-          "A'dam-Rijnkanaal - Woudrichem": 205
+          "Spijk - Maas-Waalkanaal": 150,
+          "Maas-Waalkanaal - A'dam-Rijnkanaal": 185,
+          "A'dam-Rijnkanaal - Woudrichem": 230
         },
         "Nederrijn-Lek": {
           "Pannerdensche Kop - IJsselkop": 160,
           "IJsselkop - Driel": 140,
           "Driel - Heteren": 255,
-          "Heteren - A'dam-Rijnkanaal": 190
+          "Heteren - A'dam-Rijnkanaal": 200,
+          "A'dam-Rijnkanaal - Hagestein": 185
         },
         "IJssel": {
           "IJsselkop - Twenthekanaal": 145,
           "Twenthekanaal - Zwolle-IJsselkanaal": 140,
-          "Zwolle-IJsselkanaal - Ketelmeer": 262
+          "Zwolle-IJsselkanaal - Ketelmeer": 265
         }
       },
-      "westsluis": 170,
+      "westsluis": 175,
       "verwachtingen": {
         "Oestrich": {
-          "13-11": 81,
-          "14-11": 91,
-          "15-11": 92,
-          "16-11": 95
+          "14-11": 88,
+          "15-11": 84,
+          "16-11": 87,
+          "17-11": 86
         },
         "Kaub": {
-          "13-11": 63,
-          "14-11": 78,
-          "15-11": 80,
-          "16-11": 83
+          "14-11": 73,
+          "15-11": 71,
+          "16-11": 72,
+          "17-11": 75
         },
         "Koblenz": {
-          "13-11": 51,
-          "14-11": 72,
-          "15-11": 77,
-          "16-11": 78
+          "14-11": 62,
+          "15-11": 66,
+          "16-11": 62,
+          "17-11": 79
         },
         "Keulen": {
-          "13-11": 78,
-          "14-11": 104,
-          "15-11": 118,
-          "16-11": 120
+          "14-11": 105,
+          "15-11": 113,
+          "16-11": 112,
+          "17-11": 120
         },
         "Dusseldorf": {
-          "13-11": 24,
-          "14-11": 43,
-          "15-11": 66,
-          "16-11": 72
+          "14-11": 46,
+          "15-11": 62,
+          "16-11": 65,
+          "17-11": 64
         },
         "Ruhrort": {
-          "13-11": 156,
           "14-11": 169,
-          "15-11": 197,
-          "16-11": 207
+          "15-11": 195,
+          "16-11": 201,
+          "17-11": 201
         },
         "Emmerich": {
-          "13-11": 0,
-          "14-11": 5,
-          "15-11": 22,
-          "16-11": 45
+          "14-11": 6,
+          "15-11": 24,
+          "16-11": 42,
+          "17-11": 48
         },
         "Lobith": {
-          "13-11": 640,
-          "14-11": 650,
-          "15-11": 680,
-          "16-11": 695
+          "14-11": 660,
+          "15-11": 690,
+          "16-11": 690,
+          "17-11": 700
         }
       },
-      "tijd": "14:34"
+      "tijd": "08:48"
     }
   }
 }
