@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-13T11:12:29.364Z",
+  "bijgewerkt": "2026-11-13T16:43:13.514Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,14 +75,14 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
       "naam": "Westsluis Weurt (uitvaartdiepte)",
       "bron": "afgeleid uit Nijmegen Waal",
       "nul": "diepte (cm)",
-      "verschil": 245,
+      "verschil": 246,
       "kalibratiedagen": 13,
       "spreiding": 15,
       "jaren": [
@@ -90,7 +90,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-13T11"
+      "laatste": "2026-11-13T16"
     }
   },
   "dieptes": {
@@ -169,7 +169,7 @@
           "17-11": 700
         }
       },
-      "tijd": "08:48"
+      "tijd": "14:17"
     }
   }
 }
