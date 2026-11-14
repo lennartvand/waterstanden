@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-14T10:38:19.512Z",
+  "bijgewerkt": "2026-11-14T15:20:19.187Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,7 +75,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
@@ -90,7 +90,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-14T10"
+      "laatste": "2026-11-14T15"
     }
   },
   "dieptes": {
