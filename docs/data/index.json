@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-18T17:32:10.142Z",
+  "bijgewerkt": "2026-11-19T11:51:10.471Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,7 +75,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
@@ -83,14 +83,14 @@
       "bron": "afgeleid uit Nijmegen Waal",
       "nul": "diepte (cm)",
       "verschil": 247,
-      "kalibratiedagen": 18,
+      "kalibratiedagen": 19,
       "spreiding": 18,
       "jaren": [
         2024,
         2025,
         2026
       ],
-      "laatste": "2026-11-18T17"
+      "laatste": "2026-11-19T11"
     }
   },
   "dieptes": {
@@ -98,78 +98,78 @@
       2026
     ],
     "laatste": {
-      "dag": "2026-11-18",
+      "dag": "2026-11-19",
       "vakken": {
         "Waal": {
-          "Spijk - Maas-Waalkanaal": 215,
-          "Maas-Waalkanaal - A'dam-Rijnkanaal": 265,
-          "A'dam-Rijnkanaal - Woudrichem": 275
+          "Spijk - Maas-Waalkanaal": 270,
+          "Maas-Waalkanaal - A'dam-Rijnkanaal": 285,
+          "A'dam-Rijnkanaal - Woudrichem": 295
         },
         "Nederrijn-Lek": {
-          "Pannerdensche Kop - IJsselkop": 220,
-          "IJsselkop - Driel": 220,
-          "Driel - Heteren": 290,
-          "Heteren - A'dam-Rijnkanaal": 260,
+          "Pannerdensche Kop - IJsselkop": 260,
+          "IJsselkop - Driel": 255,
+          "Driel - Heteren": 295,
+          "Heteren - A'dam-Rijnkanaal": 290,
           "A'dam-Rijnkanaal - Hagestein": 240
         },
         "IJssel": {
-          "IJsselkop - Twenthekanaal": 190,
-          "Twenthekanaal - Zwolle-IJsselkanaal": 170,
+          "IJsselkop - Twenthekanaal": 220,
+          "Twenthekanaal - Zwolle-IJsselkanaal": 200,
           "Zwolle-IJsselkanaal - Ketelmeer": 280
         }
       },
-      "westsluis": 240,
+      "westsluis": 285,
       "verwachtingen": {
         "Oestrich": {
-          "19-11": 117,
-          "20-11": 158,
-          "21-11": 184,
-          "22-11": 224
+          "20-11": 150,
+          "21-11": 187,
+          "22-11": 220,
+          "23-11": 241
         },
         "Kaub": {
-          "19-11": 104,
-          "20-11": 145,
-          "21-11": 183,
-          "22-11": 239
+          "20-11": 149,
+          "21-11": 200,
+          "22-11": 253,
+          "23-11": 282
         },
         "Koblenz": {
-          "19-11": 159,
-          "20-11": 195,
-          "21-11": 233,
-          "22-11": 278
+          "20-11": 194,
+          "21-11": 238,
+          "22-11": 309,
+          "23-11": 308
         },
         "Keulen": {
-          "19-11": 201,
-          "20-11": 242,
-          "21-11": 302,
-          "22-11": 343
+          "20-11": 258,
+          "21-11": 304,
+          "22-11": 376,
+          "23-11": 398
         },
         "Dusseldorf": {
-          "19-11": 153,
-          "20-11": 201,
-          "21-11": 253,
-          "22-11": 298
+          "20-11": 193,
+          "21-11": 243,
+          "22-11": 304,
+          "23-11": 351
         },
         "Ruhrort": {
-          "19-11": 310,
-          "20-11": 364,
-          "21-11": 434,
-          "22-11": 482
+          "20-11": 354,
+          "21-11": 410,
+          "22-11": 459,
+          "23-11": 512
         },
         "Emmerich": {
-          "19-11": 99,
-          "20-11": 157,
-          "21-11": 211,
-          "22-11": 285
+          "20-11": 174,
+          "21-11": 227,
+          "22-11": 278,
+          "23-11": 335
         },
         "Lobith": {
-          "19-11": 750,
-          "20-11": 815,
-          "21-11": 915,
-          "22-11": 995
+          "20-11": 805,
+          "21-11": 850,
+          "22-11": 960,
+          "23-11": 1020
         }
       },
-      "tijd": "14:15"
+      "tijd": "08:37"
     }
   }
 }
