@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-20T17:15:26.463Z",
+  "bijgewerkt": "2026-11-21T11:21:23.933Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-20T16"
+      "laatste": "2026-11-21T11"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-20T16"
+      "laatste": "2026-11-21T11"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-20T17"
+      "laatste": "2026-11-21T11"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-20T17"
+      "laatste": "2026-11-21T11"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-20T17"
+      "laatste": "2026-11-21T11"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-20T17"
+      "laatste": "2026-11-21T11"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,7 +75,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-20T17"
+      "laatste": "2026-11-21T11"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
@@ -83,14 +83,14 @@
       "bron": "afgeleid uit Nijmegen Waal",
       "nul": "diepte (cm)",
       "verschil": 247,
-      "kalibratiedagen": 20,
-      "spreiding": 27,
+      "kalibratiedagen": 21,
+      "spreiding": 37,
       "jaren": [
         2024,
         2025,
         2026
       ],
-      "laatste": "2026-11-20T16"
+      "laatste": "2026-11-21T11"
     }
   },
   "dieptes": {
@@ -98,76 +98,35 @@
       2026
     ],
     "laatste": {
-      "dag": "2026-11-20",
+      "dag": "2026-11-21",
       "vakken": {
         "Waal": {
-          "Spijk - Woudrichem": 310
+          "Spijk - Woudrichem": 370
+        },
+        "Overig": {
+          "Uitvaartdiepte Oostsluis Weurt": 270
         },
         "Nederrijn-Lek": {
-          "Pannerdensche Kop - IJsselkop": 320,
-          "IJsselkop - Driel": 305,
           "Driel - Heteren": 280,
           "Heteren - A'dam-Rijnkanaal": 290,
-          "A'dam-Rijnkanaal - Hagestein": 280
+          "A'dam-Rijnkanaal - Hagestein": 295
         },
         "IJssel": {
-          "IJsselkop - Twenthekanaal": 260,
-          "Twenthekanaal - Zwolle-IJsselkanaal": 240,
-          "Zwolle-IJsselkanaal - Ketelmeer": 280
+          "IJsselkop - Twenthekanaal": 280,
+          "Twenthekanaal - Zwolle-IJsselkanaal": 260,
+          "Zwolle-IJsselkanaal - Ketelmeer": 290
         }
       },
-      "westsluis": 345,
+      "westsluis": 370,
       "verwachtingen": {
-        "Oestrich": {
-          "21-11": 161,
-          "22-11": 206,
-          "23-11": 227,
-          "24-11": 225
-        },
-        "Kaub": {
-          "21-11": 169,
-          "22-11": 232,
-          "23-11": 268,
-          "24-11": 266
-        },
-        "Koblenz": {
-          "21-11": 223,
-          "22-11": 280,
-          "23-11": 293,
-          "24-11": 279
-        },
-        "Keulen": {
-          "21-11": 335,
-          "22-11": 375,
-          "23-11": 398,
-          "24-11": 388
-        },
-        "Dusseldorf": {
-          "21-11": 259,
-          "22-11": 300,
-          "23-11": 334,
-          "24-11": 331
-        },
-        "Ruhrort": {
-          "21-11": 416,
-          "22-11": 463,
-          "23-11": 487,
-          "24-11": 485
-        },
-        "Emmerich": {
-          "21-11": 198,
-          "22-11": 273,
-          "23-11": 307,
-          "24-11": 322
-        },
         "Lobith": {
-          "21-11": 860,
-          "22-11": 890,
-          "23-11": 960,
-          "24-11": 995
+          "22-11": 915,
+          "23-11": 955,
+          "24-11": 960,
+          "25-11": 930
         }
       },
-      "tijd": "14:25"
+      "tijd": "08:31"
     }
   }
 }
