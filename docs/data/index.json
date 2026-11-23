@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-22T16:37:29.657Z",
+  "bijgewerkt": "2026-11-23T13:07:59.250Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T12"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T12"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T13"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T13"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T13"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T13"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,7 +75,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T13"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
@@ -90,7 +90,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-22T16"
+      "laatste": "2026-11-23T12"
     }
   },
   "dieptes": {
@@ -98,34 +98,34 @@
       2026
     ],
     "laatste": {
-      "dag": "2026-11-22",
+      "dag": "2026-11-23",
       "vakken": {
         "Waal": {
-          "Spijk - Woudrichem": 420
+          "Spijk - Woudrichem": 450
         },
         "Overig": {
-          "Uitvaartdiepte Oostsluis Weurt": 325
+          "Uitvaartdiepte Oostsluis Weurt": 345
         },
         "Nederrijn-Lek": {
-          "Driel - Heteren": 300,
+          "Driel - Heteren": 310,
           "Heteren - A'dam-Rijnkanaal": 300,
-          "A'dam-Rijnkanaal - Hagestein": 295
+          "A'dam-Rijnkanaal - Hagestein": 305
         },
         "IJssel": {
           "Twenthekanaal - Zwolle-IJsselkanaal": 300,
           "Zwolle-IJsselkanaal - Ketelmeer": 300
         }
       },
-      "westsluis": 370,
+      "westsluis": null,
       "verwachtingen": {
         "Lobith": {
-          "23-11": 955,
-          "24-11": 980,
-          "25-11": 930,
-          "26-11": 900
+          "24-11": 945,
+          "25-11": 920,
+          "26-11": 865,
+          "27-11": 840
         }
       },
-      "tijd": "08:23"
+      "tijd": "13:40"
     }
   }
 }
