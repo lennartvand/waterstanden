@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-24T13:54:53.086Z",
+  "bijgewerkt": "2026-11-24T19:41:30.502Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,7 +75,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
@@ -90,7 +90,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-24T13"
+      "laatste": "2026-11-24T19"
     }
   },
   "dieptes": {
@@ -101,7 +101,7 @@
       "dag": "2026-11-24",
       "vakken": {
         "Overig": {
-          "Uitvaartdiepte Oostsluis Weurt": 335
+          "Uitvaartdiepte Oostsluis Weurt": 360
         },
         "Nederrijn-Lek": {
           "Driel - Heteren": 315,
@@ -116,12 +116,9 @@
           "26-11": 915,
           "27-11": 900,
           "28-11": 870
-        },
-        "Uitvaartdiepte Oostsluis Weurt": {
-          "25-11": 335
         }
       },
-      "tijd": "13:40"
+      "tijd": "15:37"
     }
   }
 }
