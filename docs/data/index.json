@@ -1,5 +1,5 @@
 {
-  "bijgewerkt": "2026-11-27T18:26:43.636Z",
+  "bijgewerkt": "2026-11-28T11:57:48.637Z",
   "eenheid": "cm",
   "uur": "UTC",
   "peilschalen": {
@@ -13,7 +13,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     },
     "NIJMEGEN": {
       "sleutel": "nijmegen",
@@ -25,7 +25,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     },
     "MAXAU": {
       "sleutel": "maxau",
@@ -35,7 +35,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     },
     "KAUB": {
       "sleutel": "kaub",
@@ -45,7 +45,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     },
     "KÖLN": {
       "sleutel": "koeln",
@@ -55,7 +55,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     },
     "DUISBURG-RUHRORT": {
       "sleutel": "duisburg-ruhrort",
@@ -65,7 +65,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     },
     "WESEL": {
       "sleutel": "wesel",
@@ -75,7 +75,7 @@
       "jaren": [
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     },
     "WESTSLUIS": {
       "sleutel": "westsluis",
@@ -90,7 +90,7 @@
         2025,
         2026
       ],
-      "laatste": "2026-11-27T18"
+      "laatste": "2026-11-28T11"
     }
   },
   "dieptes": {
@@ -98,31 +98,73 @@
       2026
     ],
     "laatste": {
-      "dag": "2026-11-27",
+      "dag": "2026-11-28",
       "vakken": {
         "Waal": {
           "Spijk - Woudrichem": 420
         },
         "Overig": {
-          "Uitvaartdiepte Oostsluis Weurt": 330
+          "Uitvaartdiepte Oostsluis Weurt": 325
         },
         "Nederrijn-Lek": {
           "IJsselkop - Driel": 350,
           "Driel - Heteren": 290,
-          "Heteren - A'dam-Rijnkanaal": 300,
-          "A'dam-Rijnkanaal - Hagestein": 290
+          "Heteren - A'dam-Rijnkanaal": 310,
+          "A'dam-Rijnkanaal - Hagestein": 325
         }
       },
       "westsluis": null,
       "verwachtingen": {
+        "Oestrich": {
+          "29-11": 156,
+          "30-11": 144,
+          "01-12": 133,
+          "02-12": 131
+        },
+        "Kaub": {
+          "29-11": 164,
+          "30-11": 147,
+          "01-12": 130,
+          "02-12": 124
+        },
+        "Koblenz": {
+          "29-11": 176,
+          "30-11": 162,
+          "01-12": 151,
+          "02-12": 145
+        },
+        "Keulen": {
+          "29-11": 252,
+          "30-11": 235,
+          "01-12": 220,
+          "02-12": 206
+        },
+        "Dusseldorf": {
+          "29-11": 205,
+          "30-11": 185,
+          "01-12": 168,
+          "02-12": 152
+        },
+        "Ruhrort": {
+          "29-11": 344,
+          "30-11": 319,
+          "01-12": 301,
+          "02-12": 283
+        },
+        "Emmerich": {
+          "29-11": 201,
+          "30-11": 165,
+          "01-12": 144,
+          "02-12": 127
+        },
         "Lobith": {
-          "28-11": 900,
-          "29-11": 885,
-          "30-11": 840,
-          "01-12": 815
+          "29-11": 890,
+          "30-11": 860,
+          "01-12": 825,
+          "02-12": 790
         }
       },
-      "tijd": "13:30"
+      "tijd": "10:44"
     }
   }
 }
